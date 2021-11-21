@@ -1,79 +1,76 @@
 import java.util.ArrayList;
 
 public class Game {
-    private final Deck deck = new Deck();
-    private final Player player1 = new Player();
-    private final Player player2 = new Player();
-    private boolean hasWinner = false;
-    private boolean isTie = false;
-    private String turnWinner;
+    private final Player player1;
+    private final Player player2;
+
     private final ArrayList<Card> tieCards = new ArrayList<>();
 
-    public void startGame() {
-        deck.createDeck();
-        deck.setPlayersPile(player1, player2);
+    public Game(Player player1, Player player2) {
+        this.player1 = player1;
+        this.player2 = player2;
+    }
 
-        while (!hasWinner) {
-            int s1 = player1.getTotalCardsSize();
-            int s2 = player2.getTotalCardsSize();
-            player1.drawCard();
-            player2.drawCard();
+    public void start() {
+        while (player1.hasCards() && player2.hasCards()) {
+            nextTurn();
+        }
 
-            if (player1.getCardPlayed().getNumber() > player2.getCardPlayed().getNumber()) {
-                turnWinner = "Player 1";
-                player1.addToDiscard(player1.getCardPlayed());
-                player1.addToDiscard(player2.getCardPlayed());
-                if (!tieCards.isEmpty()) {
-                    for (int i = 0; i < tieCards.size(); i++) {
-                        player1.addToDiscard(tieCards.get(i));
-                    }
-                    tieCards.clear();
-                    isTie = false;
-                }
-            } else if (player2.getCardPlayed().getNumber() > player1.getCardPlayed().getNumber()) {
-                turnWinner = "Player 2";
-                player2.addToDiscard(player2.getCardPlayed());
-                player2.addToDiscard(player1.getCardPlayed());
-                if (!tieCards.isEmpty()) {
-                    for (int i = 0; i < tieCards.size(); i++) {
-                        player2.addToDiscard(tieCards.get(i));
-                    }
-                    tieCards.clear();
-                    isTie = false;
-                }
-            } else {
-                isTie = true;
-                tieCards.add(player1.getCardPlayed());
-                tieCards.add(player2.getCardPlayed());
+        checkWinner();
+    }
+
+    private void checkWinner() {
+        if (player1.hasCards()) {
+            System.out.println("Player 1 wins the game!");
+        }
+
+        if (player2.hasCards()) {
+            System.out.println("Player 2 wins the game!");
+        }
+    }
+
+    public void nextTurn() {
+        System.out.print("Player 1 (" + player1.getTotalCardsSize() + " cards): ");
+        Card card1 = player1.drawCard();
+        System.out.println(card1.getNumber());
+
+        System.out.print("Player 2 (" + player2.getTotalCardsSize() + " cards): ");
+        Card card2 = player2.drawCard();
+        System.out.println(card2.getNumber());
+
+        if (card1.getNumber() > card2.getNumber()) {
+            showRoundWinnerMessage(1);
+
+            player1.addToDiscard(card2);
+            player1.addToDiscard(card1);
+
+            if (!tieCards.isEmpty()) {
+                player1.addAllToDiscard(tieCards);
+                tieCards.clear();
             }
+        } else if (card2.getNumber() > card1.getNumber()) {
+            showRoundWinnerMessage(2);
 
-            checkWinner();
-            showTurnResults(s1, s2);
-        }
-    }
+            player2.addToDiscard(card1);
+            player2.addToDiscard(card2);
 
-    public void showTurnResults(int s1, int s2) {
-        System.out.println(
-                "Player 1 (" + s1 + ") : " + player1.getCardPlayed() +
-                        "\n Player 2 (" + s2 + ") : " + player2.getCardPlayed()
-        );
-        if (!hasWinner) {
-            System.out.println(turnWinner + " won this turn \n");
-        } else if (isTie) {
-            System.out.println("This round is a tie");
+            if (!tieCards.isEmpty()) {
+                player2.addAllToDiscard(tieCards);
+                tieCards.clear();
+            }
         } else {
-            System.out.println(turnWinner + " won the game \n");
+            System.out.println("No winner in this round\n");
+            tieCards.add(card1);
+            tieCards.add(card2);
         }
     }
 
-    public void checkWinner() {
-        if (player1.getTotalCardsSize() == 0) {
-            hasWinner = true;
-            turnWinner = "Player 2";
-        } else if (player2.getTotalCardsSize() == 0) {
-            hasWinner = true;
-            turnWinner = "Player 1";
-        }
+    private void showRoundWinnerMessage(int playerNumber) {
+        System.out.println("Player " + playerNumber + " wins this round\n");
+    }
+
+    public int getTieCardsSize() {
+        return tieCards.size();
     }
 }
 

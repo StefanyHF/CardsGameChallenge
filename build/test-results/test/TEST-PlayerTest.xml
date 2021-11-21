@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PlayerTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-11-21T16:47:51" hostname="stefany-Inspiron-5579" time="0.379">
+  <properties/>
+  <testcase name="should_shuffle_the_cards_after_adding_from_discards()" classname="PlayerTest" time="0.374"/>
+  <testcase name="draw_card_should_get_and_remove_last_card()" classname="PlayerTest" time="0.003"/>
+  <testcase name="should_add_cards_from_discard_pile_into_cards_if_its_empty()" classname="PlayerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

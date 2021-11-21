@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="GameTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-11-21T16:47:51" hostname="stefany-Inspiron-5579" time="0.055">
+  <properties/>
+  <testcase name="if_there_was_two_consecutive_tie_the_tie_list_shoud_have_four_cards()" classname="GameTest" time="0.035"/>
+  <testcase name="if_there_was_a_tie_the_next_winner_get_all_the_cards_in_the_tie_list()" classname="GameTest" time="0.002"/>
+  <testcase name="if_both_cards_have_the_same_value_then_they_should_be_added_to_the_tie_list()" classname="GameTest" time="0.002"/>
+  <testcase name="if_player1_card_is_greater_than_player2_then_he_should_get_his_card()" classname="GameTest" time="0.003"/>
+  <testcase name="if_there_was_two_consecutive_tie_then_the_next_winner_should_win_all_the_cards()" classname="GameTest" time="0.003"/>
+  <testcase name="if_player2_card_is_greater_than_player1_then_he_should_get_his_card()" classname="GameTest" time="0.002"/>
+  <testcase name="if_there_was_a_tie_the_next_winner_get_all_the_4_cards_in_the_tie_list()" classname="GameTest" time="0.003"/>
+  <system-out><![CDATA[Player 1 (5 cards): 1
+Player 2 (5 cards): 1
+No winner in this round
+
+Player 1 (4 cards): 4
+Player 2 (4 cards): 4
+No winner in this round
+
+Player 1 (5 cards): 1
+Player 2 (5 cards): 1
+No winner in this round
+
+Player 1 (4 cards): 4
+Player 2 (4 cards): 2
+Player 1 wins this round
+
+Player 1 (5 cards): 1
+Player 2 (5 cards): 1
+No winner in this round
+
+Player 1 (5 cards): 8
+Player 2 (5 cards): 1
+Player 1 wins this round
+
+Player 1 (5 cards): 1
+Player 2 (5 cards): 1
+No winner in this round
+
+Player 1 (4 cards): 4
+Player 2 (4 cards): 4
+No winner in this round
+
+Player 1 (3 cards): 9
+Player 2 (3 cards): 4
+Player 1 wins this round
+
+Player 1 (5 cards): 1
+Player 2 (5 cards): 8
+Player 2 wins this round
+
+Player 1 (5 cards): 1
+Player 2 (5 cards): 1
+No winner in this round
+
+Player 1 (4 cards): 4
+Player 2 (4 cards): 2
+Player 1 wins this round
+
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

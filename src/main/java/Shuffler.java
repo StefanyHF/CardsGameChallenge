@@ -1,10 +1,15 @@
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class Shuffle {
-    private Random random = new Random();
+public class Shuffler {
 
-    public void shuffleDeckCards(ArrayList<Card> cards) {
+    private final Random random;
+
+    public Shuffler(Random random) {
+        this.random = random;
+    }
+
+    public void shuffle(List<Card> cards) {
         for (int count = cards.size() - 1; count > 0; count--) {
             Card temp = cards.get(count);
             int randomIndex = random.nextInt(count);
